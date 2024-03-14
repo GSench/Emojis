@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Emojis</string>
+    <string name="all_btn_text">All</string>
+    <string name="my_btn_text">My</string>
+    <string name="emoji_icon_stub">😀</string>
+    <string name="emoji_name_stub">Grinning face</string>
+    <string name="emoji_category_stub">Smileys and People</string>
+    <string name="emoji_group_stub">Face Positive</string>
+    <string name="copy_emoji_msg">Copied!</string>
 </resources>

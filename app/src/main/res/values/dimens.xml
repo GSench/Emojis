@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_padding">8dp</dimen>
+    <dimen name="emoji_list_item_size">100dp</dimen>
+    <dimen name="emoji_icon_text_size">60sp</dimen>
+    <dimen name="emoji_name_text_size">24sp</dimen>
+    <dimen name="emoji_category_text_size">16sp</dimen>
+    <dimen name="emoji_group_text_size">12sp</dimen>
+    <dimen name="emoji_card_elevation">8dp</dimen>
+    <dimen name="emoji_card_corner_radius">16dp</dimen>
+    <dimen name="emoji_card_margin">8dp</dimen>
+</resources>
