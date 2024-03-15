@@ -10,14 +10,17 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AllEmojisPresenterImpl(
-    private val view: AllEmojisView,
-    private val repository: EmojisRepository,
-): AllEmojisPresenter {
+class AllEmojisPresenterImpl(private val repository: EmojisRepository): AllEmojisPresenter {
+    private lateinit var view: AllEmojisView
     private var emojis: List<EmojiViewModel> = listOf()
     override fun start() {
         loadAllEmojisList()
     }
+
+    override fun attachView(view: AllEmojisView) {
+        this.view = view
+    }
+
     private fun loadAllEmojisList(){
         view.showLoading()
         CoroutineScope(Dispatchers.IO).launch {
