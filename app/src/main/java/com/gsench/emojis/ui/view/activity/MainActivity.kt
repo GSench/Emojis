@@ -17,7 +17,7 @@ import com.gsench.emojis.ui.view.list.EmojiListAdapter
 
 class MainActivity : AppCompatActivity(), AllEmojisView {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var presenter: AllEmojisPresenter
+    lateinit var presenter: AllEmojisPresenter
     private lateinit var emojiListAdapter: EmojiListAdapter
     private lateinit var clipboard: ClipboardManager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +25,9 @@ class MainActivity : AppCompatActivity(), AllEmojisView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        dependencyInjection()
-        setupView()
-    }
-    private fun dependencyInjection() {
-        presenter = (application as EmojiApplication).allEmojisPresenter
+        (application as EmojiApplication).emojiAppComponent.allEmojisComponent.inject(this)
         presenter.attachView(this)
+        setupView()
     }
     override fun onStart() {
         super.onStart()
