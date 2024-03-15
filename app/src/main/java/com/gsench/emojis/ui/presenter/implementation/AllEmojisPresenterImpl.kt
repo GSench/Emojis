@@ -14,7 +14,8 @@ class AllEmojisPresenterImpl(private val repository: EmojisRepository): AllEmoji
     private lateinit var view: AllEmojisView
     private var emojis: List<EmojiViewModel> = listOf()
     override fun start() {
-        loadAllEmojisList()
+        if(emojis.isEmpty()) loadAllEmojisList()
+        else view.showEmojis(emojis)
     }
 
     override fun attachView(view: AllEmojisView) {
