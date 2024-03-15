@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), AllEmojisView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        (application as EmojiApplication).emojiAppComponent.allEmojisComponent.inject(this)
+
         presenter.attachView(this)
         setupView()
     }
