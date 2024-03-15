@@ -2,6 +2,7 @@ package com.gsench.emojis.ui.presenter.implementation
 
 import com.gsench.emojis.data.model.LoadResult
 import com.gsench.emojis.data.repository.EmojisRepository
+import com.gsench.emojis.di.components.EmojiAppScope
 import com.gsench.emojis.ui.model.EmojiViewModel
 import com.gsench.emojis.ui.model.toViewModel
 import com.gsench.emojis.ui.presenter.AllEmojisPresenter
@@ -9,8 +10,12 @@ import com.gsench.emojis.ui.view.AllEmojisView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AllEmojisPresenterImpl(private val repository: EmojisRepository): AllEmojisPresenter {
+@EmojiAppScope
+class AllEmojisPresenterImpl @Inject constructor(
+    private val repository: EmojisRepository
+): AllEmojisPresenter {
     private lateinit var view: AllEmojisView
     private var emojis: List<EmojiViewModel> = listOf()
     override fun start() {

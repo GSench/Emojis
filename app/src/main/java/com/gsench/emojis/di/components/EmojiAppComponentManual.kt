@@ -1,21 +1,25 @@
 package com.gsench.emojis.di.components
 
-import com.gsench.emojis.api_emojis.EmojisApi
-import com.gsench.emojis.api_emojis.EmojisApiImpl
-import com.gsench.emojis.data.repository.EmojisRepository
-import com.gsench.emojis.data.repository.implementation.EmojisRepositoryImpl
+import com.gsench.emojis.api_emojis.EmojiApiModule
+import com.gsench.emojis.di.modules.DataSourcesModule
+import com.gsench.emojis.di.modules.PresenterModule
+import com.gsench.emojis.di.modules.RepositoryModule
 import dagger.Component
+import javax.inject.Scope
 
-@Component
+@Scope annotation class EmojiAppScope
+
+@EmojiAppScope
+@Component(modules = [
+    PresenterModule::class,
+    RepositoryModule::class,
+    DataSourcesModule::class,
+    EmojiApiModule::class
+])
 interface EmojiAppComponent {
     @Component.Factory
     interface Factory {
         fun create(): EmojiAppComponent
     }
     fun allEmojisComponent(): AllEmojisComponent.Factory
-}
-class EmojiAppComponentManual {
-    private val emojisApi: EmojisApi by lazy { EmojisApi.instantiateEmojisApi() }
-    private val repository: EmojisRepository by lazy { EmojisRepositoryImpl(EmojisApiImpl(emojisApi)) }
-    val allEmojisComponentManual: AllEmojisComponentManual by lazy { AllEmojisComponentManual(repository) }
 }

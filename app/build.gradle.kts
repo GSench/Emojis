@@ -54,7 +54,7 @@ dependencies {
 
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    implementation("com.google.dagger:dagger:2.28.3")
+    implementation("com.google.dagger:dagger:2.51.1")
     //implementation("com.google.dagger:dagger-android-support:2.28.3")
-    kapt("com.google.dagger:dagger-compiler:2.28.3")
+    kapt("com.google.dagger:dagger-compiler:2.51.1")
 }

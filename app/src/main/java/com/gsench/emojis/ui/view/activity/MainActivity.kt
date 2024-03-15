@@ -8,16 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gsench.emojis.R
 import com.gsench.emojis.databinding.ActivityMainBinding
+import com.gsench.emojis.di.components.AllEmojisComponent
 import com.gsench.emojis.ui.model.EmojiViewModel
 import com.gsench.emojis.ui.presenter.AllEmojisPresenter
 import com.gsench.emojis.ui.view.AllEmojisView
 import com.gsench.emojis.ui.view.EmojiApplication
 import com.gsench.emojis.ui.view.list.EmojiListAdapter
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), AllEmojisView {
     private lateinit var binding: ActivityMainBinding
-    lateinit var presenter: AllEmojisPresenter
+    private lateinit var component: AllEmojisComponent
+    @Inject lateinit var presenter: AllEmojisPresenter
     private lateinit var emojiListAdapter: EmojiListAdapter
     private lateinit var clipboard: ClipboardManager
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +28,8 @@ class MainActivity : AppCompatActivity(), AllEmojisView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-
+        component = (application as EmojiApplication).emojiAppComponent.allEmojisComponent().create()
+        component.inject(this)
         presenter.attachView(this)
         setupView()
     }
