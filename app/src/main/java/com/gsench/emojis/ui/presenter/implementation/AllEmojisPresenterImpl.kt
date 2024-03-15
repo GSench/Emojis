@@ -2,7 +2,6 @@ package com.gsench.emojis.ui.presenter.implementation
 
 import com.gsench.emojis.data.model.LoadResult
 import com.gsench.emojis.data.repository.EmojisRepository
-import com.gsench.emojis.data.repository.implementation.EmojisRepositoryImpl
 import com.gsench.emojis.ui.model.EmojiViewModel
 import com.gsench.emojis.ui.model.toViewModel
 import com.gsench.emojis.ui.presenter.AllEmojisPresenter
@@ -11,8 +10,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AllEmojisPresenterImpl(private val view: AllEmojisView): AllEmojisPresenter {
-    private val repository: EmojisRepository = EmojisRepositoryImpl()
+class AllEmojisPresenterImpl(
+    private val view: AllEmojisView,
+    private val repository: EmojisRepository,
+): AllEmojisPresenter {
     private var emojis: List<EmojiViewModel> = listOf()
     override fun start() {
         loadAllEmojisList()

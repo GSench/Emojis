@@ -4,8 +4,6 @@ import com.gsench.emojis.api_emojis.dto.toEmojisList
 import com.gsench.emojis.data.datasource.RemoteEmojisSource
 import com.gsench.emojis.data.model.Emoji
 
-class EmojisApiImpl: RemoteEmojisSource {
-    private val retrofit = EmojisApi.instantiateEmojisApi()
+class EmojisApiImpl(private val retrofit: EmojisApi): RemoteEmojisSource {
     override suspend fun getAllEmojis(): List<Emoji> = retrofit.getAllEmojisRemote().toEmojisList()
-
 }

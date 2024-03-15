@@ -7,6 +7,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gsench.emojis.R
+import com.gsench.emojis.api_emojis.EmojisApi
+import com.gsench.emojis.api_emojis.EmojisApiImpl
+import com.gsench.emojis.data.repository.EmojisRepository
+import com.gsench.emojis.data.repository.implementation.EmojisRepositoryImpl
 import com.gsench.emojis.databinding.ActivityMainBinding
 import com.gsench.emojis.ui.model.EmojiViewModel
 import com.gsench.emojis.ui.presenter.AllEmojisPresenter
@@ -17,6 +21,7 @@ import com.gsench.emojis.ui.view.list.EmojiListAdapter
 
 class MainActivity : AppCompatActivity(), AllEmojisView {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var repository: EmojisRepository
     private lateinit var presenter: AllEmojisPresenter
     private lateinit var emojiListAdapter: EmojiListAdapter
     private lateinit var clipboard: ClipboardManager
@@ -25,8 +30,15 @@ class MainActivity : AppCompatActivity(), AllEmojisView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         clipboard = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-        presenter = AllEmojisPresenterImpl(this)
+        dependencyInjection()
         setupView()
+    }
+    private fun dependencyInjection() {
+        repository = EmojisRepositoryImpl(EmojisApiImpl(EmojisApi.instantiateEmojisApi()))
+        presenter = AllEmojisPresenterImpl(
+            view = this,
+            repository = repository
+        )
     }
     override fun onStart() {
         super.onStart()
