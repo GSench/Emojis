@@ -1,8 +1,8 @@
 # Emojis
 
-This application was developed to demonstrate the process of Dependency Injection and the use of Dagger2.
+This application was developed to demonstrate the process of Dependency Injection and the usage of Dagger2.
 
-Changes were made gradually, the process of dependency injection can be tracked in accordance with the order of the branches
+Changes were made gradually, the process of dependency injection can be tracked in according to the order of the branches
 
 1. [hard_di](https://github.com/GSench/Emojis/tree/hard_di) Initially the app was implemented using CleanArchitecture(MVP) approach. Dependencies were injected hard: each object creates its own dependencies
 2. [di](https://github.com/GSench/Emojis/tree/di) The first step of DI was Constructor Injection, so now dependencies are provided as parameters.
